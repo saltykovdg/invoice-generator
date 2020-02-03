@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice-report-template" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f100e7b6-9e68-4ed1-926b-12460935f234">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="defaultFont" isDefault="true" markup="styled" fontName="Courier New" fontSize="11"/>
+	<parameter name="serviceAgreementDate" class="java.lang.String"/>
+	<parameter name="hours" class="java.lang.Double"/>
+	<parameter name="invoiceNumber" class="java.lang.Integer"/>
+	<parameter name="currentDate" class="java.lang.String"/>
+	<parameter name="deadlineDate" class="java.lang.String"/>
+	<parameter name="workDateStart" class="java.lang.String"/>
+	<parameter name="workDateEnd" class="java.lang.String"/>
+	<parameter name="amount" class="java.lang.Double"/>
+	<parameter name="directExpenses" class="java.lang.Double"/>
+	<parameter name="directExpensesReason" class="java.lang.String"/>
+	<parameter name="totalDue" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="444" splitType="Stretch">
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="70" width="220" height="100" uuid="b8d591fa-3114-455d-9cd2-6ec3d21102c8"/>
+				<text><![CDATA[<style isBold="true">COMPANY_NAME</style>
+
+Company address
+Tel: Company tel
+<style forecolor="blue" isUnderline="true">Company website</style>
+
+Company number: XXXXXXXX
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="defaultFont" x="240" y="70" width="314" height="100" uuid="576a0168-f1f4-4c01-b4d7-656e9af22a21"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[<style isBold="true">YOUR_COMPANY_NAME</style>
+
+Payment account: xxxxxxxx,
+Your Bank
+SWIFT: xxxxxxxx]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="20" width="534" height="50" uuid="08e62788-0355-47c6-b87e-358100c1b14c"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true" forecolor="orange">Styled</style><style isBold="true" forecolor="black">Name</style>]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="defaultFont" x="20" y="200" width="534" height="40" uuid="6894875f-e1a4-4f8c-b330-8c089920e6f6"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INVOICE \n\n in accordance with SERVICE AGREEMENT from " + $P{serviceAgreementDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="defaultFont" x="20" y="260" width="160" height="40" uuid="940b5e55-aae3-402c-a739-41a7a68c67a2"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Invoice " + $P{invoiceNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="defaultFont" x="180" y="260" width="374" height="40" uuid="7de30933-e4c2-461c-afd0-90d4d0f6a0e1"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date: " + $P{currentDate} + "\n" + "Paid deadline: " + $P{deadlineDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="300" width="160" height="20" uuid="3ad10fa4-3361-43e8-be2f-d5da4470d800"/>
+				<text><![CDATA[YOUR_COMPANY_NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="320" width="160" height="40" uuid="de4870c7-7569-443b-881e-1b744e4599d6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE FOR
+
+Services]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="defaultFont" x="180" y="320" width="374" height="40" uuid="77fc8b2e-6e2b-4906-89d4-ded69779c75c"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[
+
+Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="defaultFont" x="20" y="380" width="430" height="60" uuid="e935534f-ad42-46cf-a74f-11fe5fbb64a6"/>
+				<textFieldExpression><![CDATA[($P{hours} % 1.0 != 0 ? String.format("%s", $P{hours}) : String.format("%.0f", $P{hours})) + " hours of software development services for COMPANY_NAME, " + $P{workDateStart}+ " to " + $P{workDateEnd} + ". Services are made in full and on time. The parties are not claiming in volume, quality and timing of services."]]></textFieldExpression>
+			</textField>
+			<textField pattern="$0.00">
+				<reportElement style="defaultFont" x="450" y="380" width="104" height="60" uuid="d7d2dbf5-0c95-4893-a0bf-3a3423f38701"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40">
+			<printWhenExpression><![CDATA[$P{directExpenses} > 0.0]]></printWhenExpression>
+			<textField>
+				<reportElement style="defaultFont" stretchType="ElementGroupHeight" x="20" y="0" width="430" height="40" uuid="65cb766c-82ee-4bae-9598-d2c3db8307e1"/>
+				<textFieldExpression><![CDATA[$P{directExpensesReason}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$0.00" isBlankWhenNull="false">
+				<reportElement style="defaultFont" stretchType="ElementGroupHeight" x="450" y="0" width="104" height="40" uuid="77348f0f-265a-4b5e-8d43-a73a5a7e52c6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{directExpenses}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="83">
+			<staticText>
+				<reportElement style="defaultFont" mode="Opaque" x="20" y="0" width="534" height="1" backcolor="#000000" uuid="d5b52d16-dfbc-4c53-93fb-b5a86204ba4f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[TOTAL DUE]]></text>
+			</staticText>
+			<textField pattern="$0.00">
+				<reportElement style="defaultFont" x="450" y="10" width="104" height="20" uuid="704285fd-edfe-4a0b-b64d-2dd4b34fc1ec"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{totalDue}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="50" width="534" height="20" uuid="30c2159c-125d-4bf4-97b6-84ceb7e475b1"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[YOUR_COMPANY_NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="10" width="430" height="20" uuid="81af2a2b-e750-4b9d-bce7-6467f9f913f9"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[TOTAL DUE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>
