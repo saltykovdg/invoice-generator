@@ -45,4 +45,4 @@ All available arguments:
 - `-DE, --direct-expenses=<directExpenses>` - direct expenses
 - `-DER, --direct-expenses-reason=<directExpensesReason>` - direct expenses reason
 
-Before start you need create your template "invoice-report-template.jrxml" and use the argument `--jasper-reports-template-path=YOUR_TEMPLATE`.
+Before start you need create your template "invoice-report-template.jrxml" and use the argument `--jasper-reports-template-path=YOUR_TEMPLATE`, use "Jaspersoft Studio" for it.
