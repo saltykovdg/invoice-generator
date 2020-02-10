@@ -35,7 +35,8 @@ public class GeneratorService {
         log.info(params.toString());
         try {
             log.info("Start generate invoice.");
-            LocalDate currentDate = LocalDate.now();
+            LocalDate currentDate = LocalDate.now()
+                    .plusDays(params.getInvoiceAddDaysToCurrentDate());
             BigDecimal rate = new BigDecimal(params.getRate());
             BigDecimal hours = new BigDecimal(params.getHours()).setScale(2, BigDecimal.ROUND_HALF_UP);
             BigDecimal amount = rate.multiply(hours).setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -60,9 +61,11 @@ public class GeneratorService {
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
             String path = getOutputPath(params.getInvoiceNumber(), params.getOutputDir());
-            saveToPdf(jasperPrint, path);
-            saveToDoc(jasperPrint, path);
-            log.info("Invoice successfully generated.");
+            boolean exportPdfStatus = saveToPdf(jasperPrint, path);
+            boolean exportDocStatus = saveToDoc(jasperPrint, path);
+            if (exportPdfStatus && exportDocStatus) {
+                log.info("Invoice successfully generated.");
+            }
         } catch (JRException | IOException e) {
             log.error("Error", e);
         }
@@ -77,7 +80,7 @@ public class GeneratorService {
         return JasperCompileManager.compileReport(path);
     }
 
-    private String getOutputPath(Integer invoiceNumber, String outputDir) {
+    private String getOutputPath(String invoiceNumber, String outputDir) {
         String currentDate = LocalDate.now().format(dateFormatterShort);
         String outputPath = String.format("%s_%s_%s", PREFIX, currentDate, invoiceNumber);
         if (outputDir != null) {
@@ -86,17 +89,36 @@ public class GeneratorService {
         return outputPath;
     }
 
-    private void saveToPdf(JasperPrint jasperPrint, String path) throws IOException, JRException {
-        OutputStream outputStream = new FileOutputStream(path + EXTENSION_PDF);
-        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
-        outputStream.close();
+    private boolean saveToPdf(JasperPrint jasperPrint, String path) throws IOException, JRException {
+        String filePath = path + EXTENSION_PDF;
+        if (!checkIsFileAlreadyExists(filePath)) {
+            OutputStream outputStream = new FileOutputStream(path + EXTENSION_PDF);
+            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+            outputStream.close();
+            return true;
+        }
+        return false;
     }
 
-    private void saveToDoc(JasperPrint jasperPrint, String path) throws IOException, JRException {
-        File file = new File(path + EXTENSION_DOCX);
-        Exporter exporter = new JRDocxExporter();
-        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(file));
-        exporter.exportReport();
+    private boolean saveToDoc(JasperPrint jasperPrint, String path) throws IOException, JRException {
+        String filePath = path + EXTENSION_DOCX;
+        File file = new File(filePath);
+        if (!checkIsFileAlreadyExists(filePath)) {
+            Exporter exporter = new JRDocxExporter();
+            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(file));
+            exporter.exportReport();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkIsFileAlreadyExists(String path) {
+        File file = new File(path);
+        if (file.exists() && !file.isDirectory()) {
+            log.error("Error -> File already exists '{}'!", path);
+            return true;
+        }
+        return false;
     }
 }

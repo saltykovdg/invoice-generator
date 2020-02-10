@@ -44,7 +44,11 @@ public class GenerateNewInvoiceCommand implements Callable<Integer> {
     @Option(required = true,
             names = {"-IN", "--invoice-number"},
             description = "Invoice number")
-    private Integer invoiceNumber;
+    private String invoiceNumber;
+
+    @Option(names = {"-IADTCD", "--invoice-add-days-to-current-date"},
+            description = "Invoice add days to current date")
+    private Integer invoiceAddDaysToCurrentDate;
 
     @Option(required = true,
             names = {"-DD", "--deadline-days"},
@@ -82,6 +86,7 @@ public class GenerateNewInvoiceCommand implements Callable<Integer> {
                 .rate(rate)
                 .hours(hours)
                 .invoiceNumber(invoiceNumber)
+                .invoiceAddDaysToCurrentDate(invoiceAddDaysToCurrentDate != null ? invoiceAddDaysToCurrentDate : 0)
                 .deadlineDays(deadlineDays)
                 .workDateStart(workDateStart)
                 .workDateEnd(workDateEnd)

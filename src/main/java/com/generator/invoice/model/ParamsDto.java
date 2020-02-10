@@ -14,7 +14,8 @@ public class ParamsDto {
     private LocalDate serviceAgreementDate;
     private String rate;
     private String hours;
-    private Integer invoiceNumber;
+    private String invoiceNumber;
+    private Integer invoiceAddDaysToCurrentDate;
     private Integer deadlineDays;
     private LocalDate workDateStart;
     private LocalDate workDateEnd;

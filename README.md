@@ -40,6 +40,7 @@ All available arguments:
 - `-R, --rate=<rate>` - rate
 - `-H, --hours=<hours>` - hours
 - `-IN, --invoice-number=<invoiceNumber>` - invoice number
+- `-IADTCD, --invoice-add-days-to-current-date=<invoiceAddDaysToCurrentDate>` - invoice add days to current date
 - `-WDE, --work-date-end=<workDateEnd>` - work date end
 - `-WDS, --work-date-start=<workDateStart>` - work date start
 - `-DE, --direct-expenses=<directExpenses>` - direct expenses

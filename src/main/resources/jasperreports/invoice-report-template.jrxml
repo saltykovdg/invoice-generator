@@ -5,7 +5,7 @@
 	<style name="defaultFont" isDefault="true" markup="styled" fontName="Courier New" fontSize="11"/>
 	<parameter name="serviceAgreementDate" class="java.lang.String"/>
 	<parameter name="hours" class="java.lang.Double"/>
-	<parameter name="invoiceNumber" class="java.lang.Integer"/>
+	<parameter name="invoiceNumber" class="java.lang.String"/>
 	<parameter name="currentDate" class="java.lang.String"/>
 	<parameter name="deadlineDate" class="java.lang.String"/>
 	<parameter name="workDateStart" class="java.lang.String"/>
