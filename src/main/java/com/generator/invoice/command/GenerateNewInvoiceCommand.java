@@ -31,13 +31,11 @@ public class GenerateNewInvoiceCommand implements Callable<Integer> {
             description = "Service agreement date")
     private LocalDate serviceAgreementDate;
 
-    @Option(required = true,
-            names = {"-R", "--rate"},
+    @Option(names = {"-R", "--rate"},
             description = "Rate")
     private String rate;
 
-    @Option(required = true,
-            names = {"-H", "--hours"},
+    @Option(names = {"-H", "--hours"},
             description = "Hours")
     private String hours;
 
@@ -55,19 +53,13 @@ public class GenerateNewInvoiceCommand implements Callable<Integer> {
             description = "Deadline days")
     private Integer deadlineDays;
 
-    @Option(required = true,
-            names = {"-WDS", "--work-date-start"},
+    @Option(names = {"-WDS", "--work-date-start"},
             description = "Work date start")
     private LocalDate workDateStart;
 
-    @Option(required = true,
-            names = {"-WDE", "--work-date-end"},
+    @Option(names = {"-WDE", "--work-date-end"},
             description = "Work date end")
     private LocalDate workDateEnd;
-
-    @Option(names = {"-DER", "--direct-expenses-reason"},
-            description = "Direct expenses reason")
-    private String directExpensesReason;
 
     @Option(names = {"-DE", "--direct-expenses"},
             description = "Direct expenses")
@@ -83,14 +75,13 @@ public class GenerateNewInvoiceCommand implements Callable<Integer> {
                 .jasperReportsTemplatePath(jasperReportsTemplatePath)
                 .outputDir(outputDir)
                 .serviceAgreementDate(serviceAgreementDate)
-                .rate(rate)
-                .hours(hours)
+                .rate(StringUtils.isEmpty(rate) ? "0" : rate)
+                .hours(StringUtils.isEmpty(hours) ? "0" : hours)
                 .invoiceNumber(invoiceNumber)
                 .invoiceAddDaysToCurrentDate(invoiceAddDaysToCurrentDate != null ? invoiceAddDaysToCurrentDate : 0)
                 .deadlineDays(deadlineDays)
-                .workDateStart(workDateStart)
-                .workDateEnd(workDateEnd)
-                .directExpensesReason(directExpensesReason)
+                .workDateStart(workDateStart != null ? workDateStart : LocalDate.now())
+                .workDateEnd(workDateEnd != null ? workDateEnd : LocalDate.now())
                 .directExpenses(StringUtils.isEmpty(directExpenses) ? "0.0" : directExpenses)
                 .build();
         generatorService.generate(params);

@@ -88,14 +88,14 @@ Services]]></text>
 
 Total]]></text>
 			</staticText>
-			<textField>
-				<reportElement style="defaultFont" x="20" y="380" width="430" height="60" uuid="e935534f-ad42-46cf-a74f-11fe5fbb64a6"/>
-				<textFieldExpression><![CDATA[($P{hours} % 1.0 != 0 ? String.format("%s", $P{hours}) : String.format("%.0f", $P{hours})) + " hours of software development services for COMPANY_NAME, " + $P{workDateStart}+ " to " + $P{workDateEnd} + ". Services are made in full and on time. The parties are not claiming in volume, quality and timing of services."]]></textFieldExpression>
-			</textField>
+			<staticText>
+				<reportElement style="defaultFont" x="20" y="430" width="430" height="60" uuid="b677e3f6-1d58-4320-a067-e66a2a3bf449"/>
+				<text><![CDATA[Pre-approved by the company expenses for services connecting with software development. Services are made in full and on time. The parties are not claiming in volume, quality and timing of services.]]></text>
+			</staticText>
 			<textField pattern="$0.00">
-				<reportElement style="defaultFont" x="450" y="380" width="104" height="60" uuid="d7d2dbf5-0c95-4893-a0bf-3a3423f38701"/>
+				<reportElement style="defaultFont" x="450" y="430" width="104" height="60" uuid="d7d2dbf5-0c95-4893-a0bf-3a3423f38701"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$P{amount}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{directExpenses}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -111,7 +111,7 @@ Total]]></text>
 			<textField pattern="$0.00">
 				<reportElement style="defaultFont" x="450" y="10" width="104" height="20" uuid="704285fd-edfe-4a0b-b64d-2dd4b34fc1ec"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$P{totalDue}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{directExpenses}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="defaultFont" x="20" y="50" width="534" height="20" uuid="30c2159c-125d-4bf4-97b6-84ceb7e475b1"/>

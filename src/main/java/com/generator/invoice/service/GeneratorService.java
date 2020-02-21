@@ -54,7 +54,6 @@ public class GeneratorService {
             parameters.put("workDateStart", params.getWorkDateStart().format(dateFormatterCurrent));
             parameters.put("workDateEnd", params.getWorkDateEnd().format(dateFormatterCurrent));
             parameters.put("amount", amount.doubleValue());
-            parameters.put("directExpensesReason", params.getDirectExpensesReason());
             parameters.put("directExpenses", directExpenses.doubleValue());
             parameters.put("totalDue", totalDue.doubleValue());
             parameters.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);

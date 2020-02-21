@@ -44,6 +44,5 @@ All available arguments:
 - `-WDE, --work-date-end=<workDateEnd>` - work date end
 - `-WDS, --work-date-start=<workDateStart>` - work date start
 - `-DE, --direct-expenses=<directExpenses>` - direct expenses
-- `-DER, --direct-expenses-reason=<directExpensesReason>` - direct expenses reason
 
 Before start you need create your template "invoice-report-template.jrxml" and use the argument `--jasper-reports-template-path=YOUR_TEMPLATE`, use "Jaspersoft Studio" for it.

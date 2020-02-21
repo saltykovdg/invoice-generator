@@ -19,6 +19,5 @@ public class ParamsDto {
     private Integer deadlineDays;
     private LocalDate workDateStart;
     private LocalDate workDateEnd;
-    private String directExpensesReason;
     private String directExpenses;
 }
