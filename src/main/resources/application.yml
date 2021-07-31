@@ -1,0 +1,7 @@
+invoice:
+  output-dir:
+  template-path:
+  shift-current-date-days: 0
+  deadline-days: 0
+  service-agreement-date:
+  rate: 0

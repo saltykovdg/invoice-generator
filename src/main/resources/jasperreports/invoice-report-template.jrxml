@@ -10,8 +10,6 @@
 	<parameter name="deadlineDate" class="java.lang.String"/>
 	<parameter name="workDateStart" class="java.lang.String"/>
 	<parameter name="workDateEnd" class="java.lang.String"/>
-	<parameter name="amount" class="java.lang.Double"/>
-	<parameter name="directExpenses" class="java.lang.Double"/>
 	<parameter name="totalDue" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -95,7 +93,7 @@ Total]]></text>
 			<textField pattern="$0.00">
 				<reportElement style="defaultFont" x="450" y="380" width="104" height="60" uuid="d7d2dbf5-0c95-4893-a0bf-3a3423f38701"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$P{amount}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{totalDue}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
