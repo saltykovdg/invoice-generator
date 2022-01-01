@@ -10,10 +10,10 @@ import java.util.concurrent.Callable
 
 @Component
 @Command(
-    name = "generate-new-invoice",
+    name = "invoice-generator",
     mixinStandardHelpOptions = true,
-    version = ["generate-new-invoice v1.0.0"],
-    description = ["Command for generating new invoice."]
+    version = ["invoice-generator v2.1.0"],
+    description = ["The command to generate a new invoice."]
 )
 class GenerateNewInvoiceCommand(
     val generatorService: GeneratorService,

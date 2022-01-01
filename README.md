@@ -31,8 +31,8 @@ Execute the command to generate invoice:
 ```
 java -jar invoice-generator.jar ^
 --invoice-number 1 ^
---work-date-start=2021-01-01 ^
---work-date-end=2021-01-31 ^
+--work-date-start=2022-01-01 ^
+--work-date-end=2022-01-31 ^
 --hours 100
 ```
 

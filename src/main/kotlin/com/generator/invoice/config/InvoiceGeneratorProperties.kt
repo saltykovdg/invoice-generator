@@ -12,13 +12,13 @@ data class InvoiceGeneratorProperties(
     val shiftCurrentDateDays: Int = 0,
     val deadlineDays: Int = 0,
     val serviceAgreementDate: String = "",
-    val rate: Int = 0,
+    val rate: Double = 0.0,
 ) {
     companion object {
         private val logger = LoggerFactory.getLogger(InvoiceGeneratorProperties::class.java)
     }
 
     init {
-        logger.info("Current properties: {}", this)
+        logger.info("Current properties: $this")
     }
 }

@@ -20,10 +20,10 @@ class GeneratorService(
     }
 
     fun generate(args: ArgsDto) {
-        logger.info("args: {}", args)
+        logger.info("args: $args")
         try {
             val context = buildContext(args)
-            logger.info("context: {}", context)
+            logger.info("context: $context")
             reportService.buildReport(args, context);
         } catch (e: Exception) {
             logger.error("Error", e)

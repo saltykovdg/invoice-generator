@@ -22,7 +22,7 @@ class ReportService(
         private val logger = LoggerFactory.getLogger(ReportService::class.java)
 
         private const val DEFAULT_JASPER_REPORTS_TEMPLATE = "jasperreports/invoice-report-template.jrxml"
-        private const val PREFIX = "invoice"
+        private const val INVOICE_FILENAME_PREFIX = "invoice"
     }
 
     fun buildReport(args: ArgsDto, context: Map<String, Any>) {
@@ -49,7 +49,7 @@ class ReportService(
     private fun getOutputPath(invoiceNumber: String, outputDir: String): String {
         val outputPath = String.format(
             "%s_%s_%s",
-            PREFIX,
+            INVOICE_FILENAME_PREFIX,
             LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd", Locale.ENGLISH)),
             invoiceNumber
         )
@@ -82,7 +82,7 @@ class ReportService(
         val file = File(this)
         return when {
             file.exists() && !file.isDirectory -> {
-                logger.error("File already exists '{}'!", this)
+                logger.error("File already exists '$this'!")
                 true
             }
             else -> false
